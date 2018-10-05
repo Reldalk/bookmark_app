@@ -100,8 +100,10 @@ const bookmarkList = (function() {
       event.preventDefault();
       let id = getItemIdFromElement(event.currentTarget);
       id = store.findById(id);
-      id.rating = $(event.currentTarget).val();
-      render();
+      api.updateItem(id.id, {rating: id.rating}, () => {
+        id.rating = $(event.currentTarget).val();
+        render();
+      });
     });
   }
 

@@ -22,6 +22,16 @@ const api = (function() {
     });
   };
 
+  const updateItem = function(id, updateData, callback) {
+    $.ajax({
+      url: `${BASE_URL}/bookmarks/${id}`,
+      method: 'PATCH',
+      contentType: 'application/json',
+      data: JSON.stringify(updateData),
+      success: callback,
+    })
+  }
+
   const deleteItem = function(id, callback){
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
@@ -33,6 +43,7 @@ const api = (function() {
 
   return {
     getItems,
+    updateItem,
     createItem,
     deleteItem,
   }
