@@ -6,8 +6,8 @@ const bookmarkList = (function() {
   function generateItemElement(item) {
     console.log(item);
     let string = '';
-    let value = 10000;
-    let comparison = Math.pow(10, item.rating - 1);
+    let value = 1;
+    let comparison = item.rating;
     for(let i = 0; i < 5; i++){
       if(comparison < value){
         string += `<input type="radio" id = '1' class = "float-right" value = '${value}'>`;
@@ -15,7 +15,7 @@ const bookmarkList = (function() {
       else {
         string += `<input type="radio" id = '1' class = "float-right" value = '${value}' checked>`;
       }
-      value = value / 10;
+      value++;
     }
   return `<div class = inline>
     <li class="js-item-element" data-item-id="${item.id}">
@@ -72,7 +72,6 @@ const bookmarkList = (function() {
       api.createItem(itemName, itemDescription, url, itemRating, newItem => {
         store.addItem(newItem);
         render();
-
       });
     });
   }
@@ -88,17 +87,21 @@ const bookmarkList = (function() {
       const id = getItemIdFromElement(event.currentTarget);
       console.log(id);
       api.deleteItem(id, () => {
+        store.findAndDelete(id);
         render();
       })
     });
   }
 
+
+
   function handleRadioClick(){
     $('#js-bookmark-form-entry').on('click', '.float-right', event => {
-      console.log('radio button clicked');
-      const val = $(event.currentTarget).val();
-      console.log(event.currentTarget);
-      console.log($(val).contents());
+      event.preventDefault();
+      let id = getItemIdFromElement(event.currentTarget);
+      id = store.findById(id);
+      id.rating = $(event.currentTarget).val();
+      render();
     });
   }
 
