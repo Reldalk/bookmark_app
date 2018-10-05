@@ -1,0 +1,56 @@
+.nav-box {
+  width: 100%;
+  height:100px;
+  background-color: #A12A1E;
+  color:White;
+}
+
+.nav-box-bottom{
+  width: 100%;
+  height: 21px;
+  background-color: #A12A1E;
+}
+
+.add{
+  width:20%;
+  height: 100%;
+  float: left;
+}
+
+.filter{
+  float: right;
+  width: 20%;
+  height: 100%;
+}
+
+.submit{
+  align-items: center;
+  display: inline-block;
+  float: left;
+}
+
+label{
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 250px;
+  text-align: right;
+}
+
+.inline{
+  width: 100%;
+  height: 50px;
+  background-color: pink;
+  display: inline-block;
+}
+
+.center{
+  display: inline-block;
+  width: 70%;
+  align-content: center;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.float-right{
+}
