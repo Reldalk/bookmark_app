@@ -32,6 +32,7 @@ const bookmarkList = (function() {
       <p class = center>${item.title}</p>
       ${string}
       <button type="button" class ="delete">Delete</button>
+      <a href="${item.url}" target="_blank" class="left-margin">${item.url}</a>
       <textarea rows="5" class="box-space">
         ${item.desc}
       </textarea>

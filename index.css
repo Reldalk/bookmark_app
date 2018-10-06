@@ -14,6 +14,10 @@
   background-color: #A12A1E;
 }
 
+.left-margin{
+  margin-left: 20px;
+}
+
 .add{
   width:20%;
   height: 100%;
