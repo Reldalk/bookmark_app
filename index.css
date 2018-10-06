@@ -65,5 +65,13 @@ label{
   border: 1px solid black;
 }
 
+.input-center{
+  display: inline-block;
+  width: 70%;
+  align-content: center;
+  text-align: center;
+  border: 1px solid black;
+}
+
 .float-right{
 }

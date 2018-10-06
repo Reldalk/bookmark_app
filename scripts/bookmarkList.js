@@ -7,7 +7,7 @@ const bookmarkList = (function() {
     let string = '';
     let value = 1;
     let comparison = item.rating;
-    console.log(item.expanded);
+    console.log(item.edit);
     for(let i = 0; i < 5; i++){
       if(comparison < value){
         string += `<input type="radio" id = '1' class = "float-right" value = '${value}'>`;
@@ -17,12 +17,30 @@ const bookmarkList = (function() {
       }
       value++;
     }
-    if(item.expanded === false){
+    if(item.expanded === true){
       return `<div class = inline>
       <li class="js-item-element" data-item-id="${item.id}">
       <p class = center>${item.title}</p>
       ${string}
       <button type="button" class ="delete">Delete</button>
+      <button type="button" class ="edit">Edit</button>
+      <a href="${item.url}" target="_blank" class="left-margin">${item.url}</a>
+      <textarea readonly rows="5" class="box-space">
+        ${item.desc}
+      </textarea>
+      </li>
+    </div>`; 
+    }
+    else if(item.edit === true){
+      console.log('IT WAS TRUE!!!!!');
+      return `<div class = inline>
+      <li class="js-item-element" data-item-id="${item.id}">
+      <input id="title-input" type="text" class="input-center" placeholder=${item.title}>
+      ${string}
+      <button type="button" class ="delete">Delete</button>
+      <button type="button" class ="confirm">Confirm</button>
+      <input id="url-input" type="text" placeholder=${item.url}>
+      <textarea id="desc-input" rows="5" class="box-space">${item.desc}</textarea>
       </li>
     </div>`; 
     }
@@ -32,10 +50,7 @@ const bookmarkList = (function() {
       <p class = center>${item.title}</p>
       ${string}
       <button type="button" class ="delete">Delete</button>
-      <a href="${item.url}" target="_blank" class="left-margin">${item.url}</a>
-      <textarea rows="5" class="box-space">
-        ${item.desc}
-      </textarea>
+      <button type="button" class ="edit">Edit</button>
       </li>
     </div>`; 
     }
@@ -130,6 +145,34 @@ const bookmarkList = (function() {
     });
   }
 
+  function handleEditClick(){
+    $('#js-bookmark-form-entry').on('click', '.edit', event =>{
+      event.preventDefault();
+      const currentButton = event.currentTarget;
+      const id = getItemIdFromElement(currentButton);
+      const object = store.findById(id);
+      object.edit = true;
+      render();
+    });
+  };
+
+  function handleConfirmClick(){
+    $('#js-bookmark-form-entry').on('click', '.confirm', event => {
+      event.preventDefault();
+      let urlInput = $('#url-input').val();
+      let titleInput = $('#title-input').val();
+      let descInput = $('#desc-input').val();
+      const currentButton = event.currentTarget;
+      const id = getItemIdFromElement(currentButton);
+      const object = store.findById(id);
+      if(Item.notEmpty(urlInput)) object.url = urlInput;
+      if(Item.notEmpty(titleInput)) object.title = titleInput;
+      if(Item.notEmpty(descInput)) object.desc = descInput;
+      object.edit = false;
+      render();
+    });
+  };
+
 
   function bindEventListeners(){
     handleFilterClick();
@@ -137,6 +180,8 @@ const bookmarkList = (function() {
     handleRadioClick();
     handleDeleteClick();
     handleBoxExpansionClick();
+    handleEditClick();
+    handleConfirmClick();
   }
 
 
