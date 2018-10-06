@@ -19,6 +19,7 @@ const store = (function () {
   return{
     items : [],
     addItem,
+    filterByRating : 0,
     findAndDelete,
     findById,
   };

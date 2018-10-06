@@ -35,22 +35,22 @@ const bookmarkList = (function() {
   function render() {
   // Filter item list if store prop is true by item.checked === false
     let items = store.items;
+    items = store.items.filter(item => item.rating >= store.filterByRating);
     // Filter item list if store prop `searchTerm` is not empty
     // render the shopping list in the DOM
     const shoppingListItemsString = generateShoppingItemsString(items);
     $('#js-bookmark-form-entry').html(shoppingListItemsString);
   }
 
-  
-  function handleNewItemSubmit(){
-    $('#js-bookmark-form').submit(function (event) {
-      event.preventDefault();
-      const newItemName = $('.submit').val();
-    });
-  }
 
   function handleFilterClick() {
     $('#js-bookmark-form').on('click', '.filter', event => {
+      const value = Number($(event.currentTarget).val());
+      if(value === store.filterByRating){
+        return;
+      }
+      store.filterByRating = value;
+      render();
     });
   }
 
@@ -69,6 +69,7 @@ const bookmarkList = (function() {
       });
     });
   }
+
   function getItemIdFromElement(item) {
     return $(item)
       .closest('.js-item-element')
@@ -104,7 +105,6 @@ const bookmarkList = (function() {
 
 
   function bindEventListeners(){
-    handleNewItemSubmit();
     handleFilterClick();
     handleAddClick();
     handleRadioClick();
