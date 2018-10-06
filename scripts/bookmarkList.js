@@ -7,6 +7,7 @@ const bookmarkList = (function() {
     let string = '';
     let value = 1;
     let comparison = item.rating;
+    console.log(item.expanded);
     for(let i = 0; i < 5; i++){
       if(comparison < value){
         string += `<input type="radio" id = '1' class = "float-right" value = '${value}'>`;
@@ -16,13 +17,27 @@ const bookmarkList = (function() {
       }
       value++;
     }
-  return `<div class = inline>
-    <li class="js-item-element" data-item-id="${item.id}">
-    <p class = center>${item.title}</p>
-    ${string}
-    <button type="button" class ="delete">Delete</button>
-    </li>
-  </div>`;
+    if(item.expanded === false){
+      return `<div class = inline>
+      <li class="js-item-element" data-item-id="${item.id}">
+      <p class = center>${item.title}</p>
+      ${string}
+      <button type="button" class ="delete">Delete</button>
+      </li>
+    </div>`; 
+    }
+    else{
+      return `<div class = inline>
+      <li class="js-item-element" data-item-id="${item.id}">
+      <p class = center>${item.title}</p>
+      ${string}
+      <button type="button" class ="delete">Delete</button>
+      <textarea rows="5" class="box-space">
+        ${item.desc}
+      </textarea>
+      </li>
+    </div>`; 
+    }
   }
 
 
@@ -64,6 +79,7 @@ const bookmarkList = (function() {
 
       
       api.createItem(itemName, itemDescription, url, itemRating, newItem => {
+        console.log('createItem called ' + newItem);
         store.addItem(newItem);
         render();
       });
@@ -83,7 +99,18 @@ const bookmarkList = (function() {
       api.deleteItem(id, () => {
         store.findAndDelete(id);
         render();
-      })
+      });
+    });
+  }
+
+  function handleBoxExpansionClick(){
+    $('#js-bookmark-form-entry').on('click', '.center', event => {
+      event.preventDefault();
+      const id = getItemIdFromElement(event.currentTarget);
+      const element = store.findById(id);
+      element.expanded = !element.expanded;
+      render();
+      console.log(element.expanded);
     });
   }
 
@@ -95,7 +122,6 @@ const bookmarkList = (function() {
       const currentButton = event.currentTarget;
       let id = getItemIdFromElement(currentButton);
       const object = store.findById(id);
-      console.log($(currentButton).val());
       api.updateItem(object.id, {rating: $(currentButton).val()}, () => {
         object.rating = $(event.currentTarget).val();
         render();
@@ -109,6 +135,7 @@ const bookmarkList = (function() {
     handleAddClick();
     handleRadioClick();
     handleDeleteClick();
+    handleBoxExpansionClick();
   }
 
 

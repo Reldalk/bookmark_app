@@ -3,6 +3,7 @@
 const store = (function () {
 
   const addItem = function(item) {
+    item.expanded = false;
     this.items.push(item);
   };
 

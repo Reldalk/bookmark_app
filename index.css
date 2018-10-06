@@ -5,6 +5,9 @@
   color:White;
 }
 
+.js-item-element{
+  background-color: pink;
+}
 .nav-box-bottom{
   width: 100%;
   height: 21px;
@@ -17,9 +20,15 @@
   float: left;
 }
 
+.box-space{
+  border: 1px solid black;
+  width: 70%;
+  margin-left: 21px;
+  background-color: pink;
+}
+
 .filter{
   float: right;
-  width: 20%;
   height: 100%;
 }
 
