@@ -122,6 +122,7 @@ const bookmarkList = (function() {
   function addConfirmClick(){
     $('#js-bookmark-form-entry').on('click', '.submit-new-entry', event => {
       event.preventDefault();
+      console.log(errorObject);
       resetErrorTable();
       let valid = true;
       let url = $('#url').val();

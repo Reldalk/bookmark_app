@@ -38,18 +38,20 @@ const item = (function(){
 
   const validateRating = function(rating){
     if(parseInt(rating) > 5 || parseInt(rating) < 0){
-      bookmarkList.errorObject.url = 'must be between 1 and 5';
+      bookmarkList.errorObject.rating = 'must be between 1 and 5';
       return false;
     }
     else if(rating === ''){
-      bookmarkList.errorObject.url = 'rating can not be empty';
+      console.log("rating empty");
+      bookmarkList.errorObject.rating = 'rating can not be empty';
     }
     return true;
   };
 
   const validateDesc = function(desc){
     if(desc === ''){
-      bookmarkList.errorObject.url = 'desc can not be empty';
+      console.log('desc empty');
+      bookmarkList.errorObject.desc = 'desc can not be empty';
       return false;
     }
     return true;
