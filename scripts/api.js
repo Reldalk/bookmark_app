@@ -13,7 +13,7 @@ const api = (function() {
       url : url,
       desc : description,
       rating : rating,
-      expand : false,
+      viewInfo : false,
     });
     $.ajax({
       url: `${BASE_URL}/bookmarks`,

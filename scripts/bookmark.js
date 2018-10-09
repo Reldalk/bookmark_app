@@ -1,28 +1,39 @@
 'use strict';
 
-const store = (function () {
+const bookmark = (function () {
 
   const addItem = function(item) {
-    item.expanded = false;
+    item.viewInfo = false;
     item.edit = false;
     this.items.push(item);
   };
 
   const findAndDelete = function(id) {
     this.items = this.items.filter(item => item.id !== id);
-  }
+  };
 
   const findById = function(id) {
     return this.items.find(item => item.id === id);
   };
 
+  
+
+  function getItemIdFromElement(item) {
+    console.log(item);
+    return $(item)
+      .closest('div')
+      .data('item-id');
+  }
+
+
 
 
   return{
     items : [],
-    addItem,
     filterByRating : 0,
+    addItem,
     findAndDelete,
     findById,
+    getItemIdFromElement,
   };
 }() );

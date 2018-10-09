@@ -5,7 +5,7 @@ $(document).ready(function() {
   bookmarkList.render();
   api.getItems((items) => {
     console.log(items);
-    items.forEach((item) => store.addItem(item));
+    items.forEach((item) => bookmark.addItem(item));
     bookmarkList.render();
   });
 });
