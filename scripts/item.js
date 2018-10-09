@@ -42,7 +42,6 @@ const item = (function(){
       return false;
     }
     else if(rating === ''){
-      console.log("rating empty");
       bookmarkList.errorObject.rating = 'rating can not be empty';
     }
     return true;
@@ -50,7 +49,6 @@ const item = (function(){
 
   const validateDesc = function(desc){
     if(desc === ''){
-      console.log('desc empty');
       bookmarkList.errorObject.desc = 'desc can not be empty';
       return false;
     }

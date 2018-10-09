@@ -122,7 +122,6 @@ const bookmarkList = (function() {
   function addConfirmClick(){
     $('#js-bookmark-form-entry').on('click', '.submit-new-entry', event => {
       event.preventDefault();
-      console.log(errorObject);
       resetErrorTable();
       let valid = true;
       let url = $('#url').val();
@@ -166,7 +165,6 @@ const bookmarkList = (function() {
       const object = bookmark.findById(id);
       api.updateItem(object.id, {rating: $(currentButton).val()}, () => {
         object.rating = $(event.currentTarget).val();
-        console.log(object.rating);
         render();
       });
     });
@@ -228,7 +226,6 @@ const bookmarkList = (function() {
     // Filter item list if store prop is true by item.checked === false
     let items = bookmark.items;
     if(bookmark.filterByRating !== 0){
-      console.log(items);
       items = items.filter(item => parseInt(item.rating) === bookmark.filterByRating);
     }
     // Filter item list if store prop `searchTerm` is not empty

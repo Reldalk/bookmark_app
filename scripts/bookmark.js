@@ -19,7 +19,6 @@ const bookmark = (function () {
   
 
   function getItemIdFromElement(item) {
-    console.log(item);
     return $(item)
       .closest('div')
       .data('item-id');
