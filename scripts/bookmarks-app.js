@@ -232,15 +232,12 @@ const bookmarkList = (function() {
 
   function render() {
     if(page === '') page = 'main';
-    // Filter item list if store prop is true by item.checked === false
     let items = bookmark.items;
     if(bookmark.filterByRating !== 0){
       items = items.filter(item => parseInt(item.rating) === bookmark.filterByRating);
     }
-    // Filter item list if store prop `searchTerm` is not empty
-    // render the shopping list in the DOM
-    const shoppingListItemsString = generateShoppingItemsString(items);
-    $('#js-bookmark-form-entry').html(shoppingListItemsString);
+    const bookmarkItemsString = generateShoppingItemsString(items);
+    $('#js-bookmark-form-entry').html(bookmarkItemsString);
   }
 
 
