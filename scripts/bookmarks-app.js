@@ -38,7 +38,7 @@ const bookmarkList = (function() {
     }
     else if(page === 'add'){
       return string = `
-      <main role="main>
+      <main role="main">
         <div class=submission-box>
           <label class = "submission-text"><b>${errorObject.url}</b></label>
           <input id = 'url' class = "submission" type="URL" placeholder="https://www.google.com">
@@ -60,7 +60,7 @@ const bookmarkList = (function() {
           <br/>
           <input class = "submit-new-entry" type="submit" value="Submit">
         </div>
-      </main>`;
+        </main>`;
     }
     else if(page ==='view'){
       if(item.viewInfo === true){
