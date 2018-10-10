@@ -24,54 +24,63 @@ const bookmarkList = (function() {
       }
       if(page === 'main'){
         string = 
-        `<div class = ${array[arrayCounter % 4]} data-item-id=${item.id}>
-           <label class="middle"><a href=${item.url}>${item.title}</a></label>
-           ${string}
-           <button class="viewInfo">View Info</button>
-           <button class="delete">Delete</button>
-         </div>`;
+        `
+        <section role="region">
+          <div class = ${array[arrayCounter % 4]} data-item-id=${item.id}>
+            <label class="middle"><a href=${item.url}>${item.title}</a></label>
+            ${string}
+            <button class="viewInfo">View Info</button>
+            <button class="delete">Delete</button>
+          </div>
+         </section>`;
         arrayCounter++;
       }
     }
     else if(page === 'add'){
-      return string = `<div class=submission-box>
-      <label class = "submission-text"><b>${errorObject.url}</b></label>
-      <input id = 'url' class = "submission" type="URL" placeholder="https://www.google.com">
-      <br/>
-      <br />
-      <label class = "submission-text"><b>${errorObject.title}</b></label>
-      <input id = 'title' class = "submission" type="text" placeholder="Enter title">
-      <br/>
-      <br />
-      <label class = "submission-text"><b>${errorObject.rating}</b></label>
-      <input id = 'rating' class = "submission" type="number" placeholder="1 - 5">
-      <br/>
-      <br />
-      <label class = "submission-text"><b>${errorObject.desc}</b></label>
-      <textarea id = 'desc' class="submission" id="" rows="10"></textarea>
-      <br/>
-      <input class="back-button" type="submit" value="Back">
-      <br/>
-      <br/>
-      <input class = "submit-new-entry" type="submit" value="Submit">
-      </div>`;
+      return string = `
+      <main role="main>
+        <div class=submission-box>
+          <label class = "submission-text"><b>${errorObject.url}</b></label>
+          <input id = 'url' class = "submission" type="URL" placeholder="https://www.google.com">
+          <br/>
+          <br />
+          <label class = "submission-text"><b>${errorObject.title}</b></label>
+          <input id = 'title' class = "submission" type="text" placeholder="Enter title">
+          <br/>
+          <br />
+          <label class = "submission-text"><b>${errorObject.rating}</b></label>
+          <input id = 'rating' class = "submission" type="number" placeholder="1 - 5">
+          <br/>
+          <br />
+          <label class = "submission-text"><b>${errorObject.desc}</b></label>
+          <textarea id = 'desc' class="submission" id="" rows="10"></textarea>
+          <br/>
+          <input class="back-button" type="submit" value="Back">
+          <br/>
+          <br/>
+          <input class = "submit-new-entry" type="submit" value="Submit">
+        </div>
+      </main>`;
     }
     else if(page ==='view'){
       if(item.viewInfo === true){
-        return string = `<div class=submission-box>
-        <label id = 'url' class = "submission" type="url"><a href=${item.url}>${item.url}</a></label>
-        <br/>
-        <br />
-        <label id = 'title' class = "submission">${item.title}</label>
-        <br/>
-        <br />
-        <label id = 'rating' class = "submission">${item.rating + '/ 5 stars'}</label>
-        <br/>
-        <br />
-        <textarea id = 'desc' class="submission" id="" rows="10" readonly>${item.desc}</textarea>
-        <br/>
-        <input class = "back-button" type="submit" value="Back">
-        </div>`;
+        return string = `
+        <main role="main">
+          <div class=submission-box>
+            <label id = 'url' class = "submission" type="url"><a href=${item.url}>${item.url}</a></label>
+            <br/>
+            <br />
+            <label id = 'title' class = "submission">${item.title}</label>
+            <br/>
+            <br />
+            <label id = 'rating' class = "submission">${item.rating + '/ 5 stars'}</label>
+            <br/>
+            <br />
+            <textarea id = 'desc' class="submission" id="" rows="10" readonly>${item.desc}</textarea>
+            <br/>
+            <input class = "back-button" type="submit" value="Back">
+          </div>
+        </main>`;
       } 
     }
     return string;

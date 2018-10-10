@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.center{
+
+}
+
 .lightGray{
   width: 50%;
   background-color: lightgray;
@@ -20,11 +24,6 @@
   line-height: 200px;  
   font-size: 20px;
   width: 50%;
-}
-
-.main{
-  width: 100%;
-  background-color: pink;
 }
 
 .back-button{
