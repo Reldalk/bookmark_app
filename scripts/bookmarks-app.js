@@ -15,10 +15,12 @@ const bookmarkList = (function() {
       let comparison = item.rating;
       for(let i = 0; i < 5; i++){
         if(comparison < value){
-          string += `<input type="radio" id = '1' class = "float-right" value = '${value}'>`;
+          string += `<input type="radio" id = '1' class = "float-right" value = '${value}'
+          aria-label="rating">`;
         }
         else {
-          string += `<input type="radio" id = '1' class = "float-right" value = '${value}' checked>`;
+          string += `<input type="radio" id = '1' class = "float-right" value = '${value}' checked
+          aria-label="rating">`;
         }
         value++;
       }
@@ -27,7 +29,7 @@ const bookmarkList = (function() {
         `
         <section role="region">
           <div class = ${array[arrayCounter % 4]} data-item-id=${item.id}>
-            <label class="middle"><a href=${item.url}>${item.title}</a></label>
+            <label class="middle" aria-label="title-link"><a href=${item.url}>${item.title}</a></label>
             ${string}
             <button class="viewInfo">View Info</button>
             <button class="delete">Delete</button>
@@ -41,19 +43,23 @@ const bookmarkList = (function() {
       <main role="main">
         <div class=submission-box>
           <label class = "submission-text"><b>${errorObject.url}</b></label>
-          <input id = 'url' class = "submission" type="URL" placeholder="https://www.google.com">
+          <input id = 'url' class = "submission" type="URL" placeholder="https://www.google.com" 
+          aria-label="url-input">
           <br/>
           <br />
           <label class = "submission-text"><b>${errorObject.title}</b></label>
-          <input id = 'title' class = "submission" type="text" placeholder="Enter title">
+          <input id = 'title' class = "submission" type="text" placeholder="Enter title"
+          aria-label="title-input">
           <br/>
           <br />
           <label class = "submission-text"><b>${errorObject.rating}</b></label>
-          <input id = 'rating' class = "submission" type="number" placeholder="1 - 5">
+          <input id = 'rating' class = "submission" type="number" placeholder="1 - 5"
+          aria-label="rating-input">
           <br/>
           <br />
           <label class = "submission-text"><b>${errorObject.desc}</b></label>
-          <textarea id = 'desc' class="submission" id="" rows="10"></textarea>
+          <textarea id = 'desc' class="submission" id="" rows="10"
+          aria-label="description-input"></textarea>
           <br/>
           <input class="back-button" type="submit" value="Back">
           <br/>
@@ -67,16 +73,20 @@ const bookmarkList = (function() {
         return string = `
         <main role="main">
           <div class=submission-box>
-            <label id = 'url' class = "submission" type="url"><a href=${item.url}>${item.url}</a></label>
+            <label id = 'url' class = "submission" type="url"><a href=${item.url}
+            aria-label="url">${item.url}</a></label>
             <br/>
             <br />
-            <label id = 'title' class = "submission">${item.title}</label>
+            <label id = 'title' class = "submission"
+            aria-label="title">${item.title}</label>
             <br/>
             <br />
-            <label id = 'rating' class = "submission">${item.rating + '/ 5 stars'}</label>
+            <label id = 'rating' class = "submission"
+            aria-label="rating">${item.rating + '/ 5 stars'}</label>
             <br/>
             <br />
-            <textarea id = 'desc' class="submission" id="" rows="10" readonly>${item.desc}</textarea>
+            <textarea id = 'desc' class="submission" id="" rows="10" readonly
+            aria-label="description">${item.desc}</textarea>
             <br/>
             <input class = "back-button" type="submit" value="Back">
           </div>
@@ -129,7 +139,7 @@ const bookmarkList = (function() {
   }
 
   function addConfirmClick(){
-    $('#js-bookmark-form-entry').on('change', '.submit-new-entry', event => {
+    $('#js-bookmark-form-entry').on('click', '.submit-new-entry', event => {
       event.preventDefault();
       resetErrorTable();
       let valid = true;
@@ -166,7 +176,7 @@ const bookmarkList = (function() {
   }
 
   function handleRadioClick(){
-    $('#js-bookmark-form-entry').on('click', '.float-right', event => {
+    $('#js-bookmark-form-entry').on('change', '.float-right', event => {
       event.preventDefault();
       arrayCounter = 0;
       const currentButton = event.currentTarget;

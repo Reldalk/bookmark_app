@@ -68,23 +68,22 @@
 .submission-box{
   margin-top: 50px;
   width: 100%;
-  height: 800px;
   align-items: center;
   text-align: center;
-  display: block;
+  display: inline-block;
 }
 
 .submission{
   font-size: 20px;
   width: 50%;
   text-align: center;
+  margin: auto;
 }
 
 .submission-text{
   font-size: 20px;
-  display: inline-block;
-  width: 250px;
-  text-align: right;
+  display: block;
+  text-align: center;
   vertical-align: top;
 }
 
