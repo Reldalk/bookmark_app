@@ -129,7 +129,7 @@ const bookmarkList = (function() {
   }
 
   function addConfirmClick(){
-    $('#js-bookmark-form-entry').on('click', '.submit-new-entry', event => {
+    $('#js-bookmark-form-entry').on('change', '.submit-new-entry', event => {
       event.preventDefault();
       resetErrorTable();
       let valid = true;
@@ -204,7 +204,7 @@ const bookmarkList = (function() {
       }
       arrayCounter = 0;
       bookmark.filterByRating = value;
-      render();
+      render(value);
     });
   }
 
@@ -230,11 +230,12 @@ const bookmarkList = (function() {
   }
 
 
-  function render() {
+  function render(test) {
+    const rating = test || bookmark.filterByRating;
     if(page === '') page = 'main';
     let items = bookmark.items;
-    if(bookmark.filterByRating !== 0){
-      items = items.filter(item => parseInt(item.rating) === bookmark.filterByRating);
+    if(rating !== 0){
+      items = items.filter(item => parseInt(item.rating) === rating);
     }
     const bookmarkItemsString = generateShoppingItemsString(items);
     $('#js-bookmark-form-entry').html(bookmarkItemsString);
